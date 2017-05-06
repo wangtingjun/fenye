@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    a.active {
+      color: #f00;
+    }
+    a{
+      padding: 3px 5px
+    }
+  </style>
+</head>
+<body>
+<div id="box">
+</div>
+<script>
+
+    function pagination(currentPage, pages, renderTo, callback) {
+        function createElement(innerHtml, _callback) {
+            var a = document.createElement('a');
+            a.href = 'javascript:;';
+            a.innerHTML = innerHtml;
+            a.onclick = function () {
+
+                switch (innerHtml){
+                    case '首页':
+                        callback(1);
+                        break;
+                    case '尾页':
+                        callback(obj.pages);
+                        break;
+                    case '上一页':
+                        callback(obj.currentPage - 1);
+                        break;
+                    case '下一页':
+                        callback(obj.currentPage + 1);
+                        break;
+                    default:
+                        callback(innerHtml);
+                }
+                _callback();
+            };
+            return a;
+        }
+
+        var obj = {
+            currentPage: currentPage,
+            pages: pages,
+            init: function () {
+                renderTo.innerHTML = '';
+                if (obj.currentPage !== 1) {
+                    var first = createElement('首页', obj.first);
+                    var prev = createElement('上一页', obj.prev);
+                    renderTo.appendChild(first);
+                    renderTo.appendChild(prev);
+                }
+                for (var i = 1; i < obj.pages + 1; i++) {
+                    (function (i) {
+                        var a = createElement(i, function () {
+                            obj.indexTo(i);
+                        });
+                        if (obj.currentPage === i) {
+                            a.className = 'active';
+                        }
+                        renderTo.appendChild(a);
+                    })(i);
+
+                }
+                if (obj.currentPage !== obj.pages) {
+                    var next = createElement('下一页', obj.next);
+                    var last = createElement('尾页', obj.last);
+                    renderTo.appendChild(next);
+                    renderTo.appendChild(last);
+                }
+
+            },
+            first: function () {
+                obj.indexTo(1);
+            },
+            last: function () {
+                obj.indexTo(obj.pages);
+            },
+            prev: function () {
+                obj.indexTo(obj.currentPage - 1);
+            },
+            next: function () {
+                obj.indexTo(obj.currentPage + 1);
+            },
+            indexTo: function (currentPage) {
+                obj.currentPage = currentPage;
+                obj.init();
+            }
+        };
+        return obj;
+    }
+
+    var box = document.getElementById('box');
+    var p = pagination(3, 10, box, function (currentPage) {
+        alert(currentPage);
+//        $.ajax({
+//            url: '/api',
+//            data: {
+//                currentPage: currentPage
+//            }
+//        }).success(function (data) {
+//            if(data.success) {
+//               p.pages = data.pages;
+//               p.init();
+//            }
+//        })
+    });
+    p.init();
+
+</script>
+</body>
+</html>
