@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <style>
-    a {
-      padding: 2px 5px;
-      color: #333;
-      text-decoration: none;
-      border: 1px solid #ccc;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        a {
+            padding: 2px 5px;
+            color: #333;
+            text-decoration: none;
+            border: 1px solid #ccc;
+        }
 
-    a.active {
-      color: #ff0;
-    }
-  </style>
+        a.active {
+            color: #ff0;
+        }
+    </style>
 </head>
 <body>
 <script>
@@ -49,13 +49,13 @@
                 }
                 var min = obj.currentPage - distance;
                 var max = obj.currentPage + distance;
-                if(min<1){
-                    min=1;
-                    max=obj.distance*2+1;
+                if (min < 1) {
+                    min = 1;
+                    max = obj.distance * 2 + 1;
                 }
-                if(max>obj.pages){
-                    min=obj.pages-obj.distance*2;
-                    max=obj.pages;
+                if (max > obj.pages) {
+                    min = obj.pages - obj.distance * 2;
+                    max = obj.pages;
                 }
                 for (; min <= max; min++) {
                     (function (i) {

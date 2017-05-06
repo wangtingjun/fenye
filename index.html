@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-  <style>
-    a.active {
-      color: #f00;
-    }
-    a{
-      padding: 3px 5px
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a.active {
+            color: #f00;
+        }
+
+        a {
+            padding: 3px 5px
+        }
+    </style>
 </head>
 <body>
 <div id="box">
@@ -24,7 +25,7 @@
             a.innerHTML = innerHtml;
             a.onclick = function () {
 
-                switch (innerHtml){
+                switch (innerHtml) {
                     case '首页':
                         callback(1);
                         break;
